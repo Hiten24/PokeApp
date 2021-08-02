@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PokeApp</string>
+    
+    <!--Moves-->
+    <string name="hp">hp</string>
+    <string name="attack">atk</string>
+    <string name="defence">def</string>
+    <string name="spacialAttack">sAtk</string>
+    <string name="specialDefence">sDef</string>
+    <string name="speed">spd</string>
 </resources>

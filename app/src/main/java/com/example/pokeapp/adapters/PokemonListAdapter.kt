@@ -1,29 +1,23 @@
-package com.example.pokeapp.adapters
+ package com.example.pokeapp.adapters
 
-import android.content.res.ColorStateList
-import android.graphics.Bitmap
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import com.example.pokeapp.R
 import com.example.pokeapp.databinding.ItemPokemonBinding
 import com.example.pokeapp.models.PokemonEntry
 import com.example.pokeapp.ui.fragments.HomeFragmentDirections
+import com.example.pokeapp.util.getPokemonTypeColor
 import java.util.*
 
 class PokemonListAdapter(): RecyclerView.Adapter<PokemonListAdapter.PokemonListViewHolder>() {
 
     inner class PokemonListViewHolder(val binding: ItemPokemonBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemon: PokemonEntry) {
+        /*fun bind(pokemon: PokemonEntry) {
             binding.tvPokemonName.text = pokemon.name
 //            binding.tvType.text = pokemon.type
 //            val cardBgColor = binding.root.resources.getIdentifier(pokemon.type, "color", binding.root.context.packageName)
@@ -32,7 +26,7 @@ class PokemonListAdapter(): RecyclerView.Adapter<PokemonListAdapter.PokemonListV
             Glide.with(binding.root)
                 .asBitmap()
                 .load(pokemon.imgUrl)
-                /*.listener(object: RequestListener<Bitmap>{
+                *//*.listener(object: RequestListener<Bitmap>{
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
@@ -56,7 +50,7 @@ class PokemonListAdapter(): RecyclerView.Adapter<PokemonListAdapter.PokemonListV
                         }
                         return false
                     }
-                })*/
+                })*//*
                 .into(binding.ivPokemon)
 
 //            val typeIconName = pokemon.type.replaceFirstChar {
@@ -67,7 +61,7 @@ class PokemonListAdapter(): RecyclerView.Adapter<PokemonListAdapter.PokemonListV
 //            Glide.with(binding.root)
 //                .load(typeUrl)
 //                .into(binding.ivPokeTypeIcone)
-        }
+        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonListViewHolder {
@@ -89,8 +83,27 @@ class PokemonListAdapter(): RecyclerView.Adapter<PokemonListAdapter.PokemonListV
     override fun onBindViewHolder(holder: PokemonListViewHolder, position: Int) {
         val pokemon = differ.currentList[position]
         val view = holder.binding
+
+        /*view.tvPokemonName.text = pokemon.name
+
+        Glide.with(view.root)
+            .load(pokemon.imgUrl)
+            .into(view.ivPokemonImg)*/
+
+        view.pokemonCard.setCardBackgroundColor(Color.parseColor(getPokemonTypeColor(pokemon.type)[0]))
+        view.pokemonCard.alpha = 0.9F
+
+        val typeIconUrl = "https://raw.githubusercontent.com/Hiten24/PokemonResources/main/icon/png/drawable-mdpi/Types-${
+            pokemon.type.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
+        }.png"
+
+        Glide.with(view.root)
+            .load(typeIconUrl)
+            .into(view.ivPokeTypeIcone)
+
         view.tvPokemonName.text = pokemon.name
         Glide.with(view.root)
+            .asBitmap()
             .load(pokemon.imgUrl)
             .into(view.ivPokemon)
 
