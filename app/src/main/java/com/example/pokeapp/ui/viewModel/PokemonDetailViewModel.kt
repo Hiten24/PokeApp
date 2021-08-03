@@ -1,17 +1,14 @@
 package com.example.pokeapp.ui.viewModel
 
 import android.util.Log
-import android.widget.Toast
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.models.PokemonDetail
-import com.example.pokeapp.models.pokemonResponse.Pokemon
 import com.example.pokeapp.network.PokemonApiService
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import java.util.*
 
 class PokemonDetailViewModel(val id: Int): ViewModel() {
 
@@ -40,7 +37,7 @@ class PokemonDetailViewModel(val id: Int): ViewModel() {
             val evolutionChain = PokemonApiService.pokemonApi.getEvolutionChain(chainId)
 
             _pokemon.value = PokemonDetail(
-                pokemon.name,
+                pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
                 pokemon.id,
                 pokemon.types,
                 pokemon.sprites.other.official_artwork.front_default,

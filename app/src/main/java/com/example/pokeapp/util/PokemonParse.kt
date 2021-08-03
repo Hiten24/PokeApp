@@ -1,6 +1,5 @@
 package com.example.pokeapp.util
 
-import android.graphics.drawable.Drawable
 import com.example.pokeapp.R
 import com.example.pokeapp.models.pokemonResponse.Ability
 
@@ -11,7 +10,7 @@ fun convertWeightHectogramsToKilograms(weight: Int): Float = weight.toFloat()/10
 fun convertWeightHectogramsTOLbs(weight: Int): Float = (weight.toFloat()/4.536).toFloat()
 
 fun formatAbilities(abilities: List<Ability>): String {
-    var ability: String = ""
+    var ability = ""
     for(i in abilities) {
         ability = ability + "${abilities.indexOf(i)+1}. " + i.ability.name + "\n"
     }
@@ -25,7 +24,7 @@ fun getTypeTag(type: String): Int {
         "dragon" -> R.drawable.ic_dragon
         "electric" -> R.drawable.ic_electric
         "fairy" -> R.drawable.ic_fairy
-        "fight" -> R.drawable.ic_fight
+        "fighting" -> R.drawable.ic_fight
         "fire" -> R.drawable.ic_fire
         "flaying" -> R.drawable.ic_flying
         "ghost" -> R.drawable.ic_ghost
@@ -49,7 +48,7 @@ fun getPokemonTypeColor(type: String): Array<String> {
         "dragon" -> arrayOf(TypeColor.dragon, TypeSecondColor.dragon)
         "electric" -> arrayOf(TypeColor.electric, TypeSecondColor.electric)
         "fairy" -> arrayOf(TypeColor.fairy, TypeSecondColor.fairy)
-        "fight" -> arrayOf(TypeColor.fight, TypeSecondColor.fight)
+        "fighting" -> arrayOf(TypeColor.fight, TypeSecondColor.fight)
         "fire" -> arrayOf(TypeColor.fire, TypeSecondColor.fire)
         "flaying" -> arrayOf(TypeColor.flaying, TypeSecondColor.flaying)
         "ghost" -> arrayOf(TypeColor.ghost, TypeSecondColor.ghost)

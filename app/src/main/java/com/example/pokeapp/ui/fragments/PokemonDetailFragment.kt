@@ -2,13 +2,11 @@ package com.example.pokeapp.ui.fragments
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -33,6 +31,8 @@ class PokemonDetailFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
+
+        activity?.actionBar?.hide()
 
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
@@ -73,7 +73,7 @@ class PokemonDetailFragment: Fragment() {
 
         val colorHex = getPokemonTypeColor(pokemon.types[0].type.name)
         color = intArrayOf(Color.parseColor(colorHex[0]),Color.parseColor(colorHex[1]))
-        val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, color)
+//        val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, color)
 
         val window = activity?.window
         window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -81,7 +81,6 @@ class PokemonDetailFragment: Fragment() {
         window?.statusBarColor = color[0]
 
         val typeImg = getTypeTag(pokemon.types[0].type.name)
-        binding.ivPokemonType.setImageDrawable(AppCompatResources.getDrawable(requireContext(), typeImg))
 
         b.clPokemonDetail.setBackgroundColor(color[0])
 
@@ -90,7 +89,8 @@ class PokemonDetailFragment: Fragment() {
             .into(b.ivPokemon)
 
         b.tvPokeName.text = pokemon.name
-        b.tvPokemonId.text = "#${pokemon.id}"
+        val id = "#${pokemon.id}"
+        b.tvPokemonId.text = id
         b.tvPokemonType.text = pokemon.types[0].type.name
         b.tvPokemonType.backgroundTintList = ColorStateList.valueOf(color[1])
         b.tvPokemonType.setCompoundDrawablesWithIntrinsicBounds(typeImg,0,0,0)

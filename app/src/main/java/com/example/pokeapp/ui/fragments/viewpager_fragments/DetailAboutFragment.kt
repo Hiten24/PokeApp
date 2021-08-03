@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.pokeapp.R
 import com.example.pokeapp.databinding.FragmentDetailAboutBinding
 import com.example.pokeapp.models.PokemonDetail
-import com.example.pokeapp.models.pokemonResponse.Pokemon
 import com.example.pokeapp.util.*
-import org.w3c.dom.Text
 
 class DetailAboutFragment: Fragment() {
 
@@ -22,7 +18,7 @@ class DetailAboutFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailAboutBinding.inflate(inflater, container, false)
 
         val pokemon = this.arguments?.getSerializable("pokemon") as PokemonDetail
