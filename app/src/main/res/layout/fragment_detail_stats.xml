@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/titleBaseStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/base_stats_title"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/titleHp"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/hp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleBaseStats" />
+
+            <TextView
+                android:id="@+id/titleAttack"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/attack"
+                app:layout_constraintStart_toStartOf="@+id/titleHp"
+                app:layout_constraintTop_toBottomOf="@+id/titleHp" />
+
+            <TextView
+                android:id="@+id/titleDefence"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/defence"
+                app:layout_constraintStart_toStartOf="@+id/titleAttack"
+                app:layout_constraintTop_toBottomOf="@+id/titleAttack" />
+
+            <TextView
+                android:id="@+id/titleSpAttack"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/spacialAttack"
+                app:layout_constraintStart_toStartOf="@+id/titleDefence"
+                app:layout_constraintTop_toBottomOf="@+id/titleDefence" />
+
+            <TextView
+                android:id="@+id/titleSpDefence"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/specialDefence"
+                app:layout_constraintStart_toStartOf="@+id/titleSpAttack"
+                app:layout_constraintTop_toBottomOf="@+id/titleSpAttack" />
+
+            <TextView
+                android:id="@+id/titleSpeed"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/speed"
+                app:layout_constraintStart_toStartOf="@+id/titleSpDefence"
+                app:layout_constraintTop_toBottomOf="@+id/titleSpDefence" />
+
+            <TextView
+                android:id="@+id/tvStatHp"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                app:layout_constraintStart_toEndOf="@+id/titleHp"
+                app:layout_constraintTop_toTopOf="@+id/titleHp"
+                tools:text="000" />
+
+            <TextView
+                android:id="@+id/tvStatAttack"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStatHp"
+                app:layout_constraintTop_toTopOf="@+id/titleAttack"
+                tools:text="000" />
+
+            <TextView
+                android:id="@+id/tvStatDefence"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStatAttack"
+                app:layout_constraintTop_toTopOf="@+id/titleDefence"
+                tools:text="000" />
+
+            <TextView
+                android:id="@+id/tvStatSpAttack"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStatDefence"
+                app:layout_constraintTop_toTopOf="@+id/titleSpAttack"
+                tools:text="000" />
+
+            <TextView
+                android:id="@+id/tvStatSpDefence"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStatSpAttack"
+                app:layout_constraintTop_toTopOf="@+id/titleSpDefence"
+                tools:text="000" />
+
+            <TextView
+                android:id="@+id/tvStatSpeed"
+                style="@style/detailStatsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tvStatSpDefence"
+                app:layout_constraintTop_toTopOf="@+id/titleSpeed"
+                tools:text="000" />
+
+            <ProgressBar
+                android:id="@+id/pbStatHp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatHp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvStatHp"
+                app:layout_constraintTop_toTopOf="@+id/tvStatHp" />
+
+            <ProgressBar
+                android:id="@+id/pbStatAttack"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatAttack"
+                app:layout_constraintEnd_toEndOf="@+id/pbStatHp"
+                app:layout_constraintStart_toStartOf="@+id/pbStatHp"
+                app:layout_constraintTop_toTopOf="@+id/tvStatAttack" />
+
+            <ProgressBar
+                android:id="@+id/pbStatDefence"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatDefence"
+                app:layout_constraintEnd_toEndOf="@+id/pbStatAttack"
+                app:layout_constraintStart_toStartOf="@+id/pbStatAttack"
+                app:layout_constraintTop_toTopOf="@+id/tvStatDefence" />
+
+            <ProgressBar
+                android:id="@+id/pbStatSpAttack"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatSpAttack"
+                app:layout_constraintEnd_toEndOf="@+id/pbStatDefence"
+                app:layout_constraintStart_toStartOf="@+id/pbStatDefence"
+                app:layout_constraintTop_toTopOf="@+id/tvStatSpAttack" />
+
+            <ProgressBar
+                android:id="@+id/pbStatSpDefence"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatSpDefence"
+                app:layout_constraintEnd_toEndOf="@+id/pbStatSpAttack"
+                app:layout_constraintStart_toStartOf="@+id/pbStatSpAttack"
+                app:layout_constraintTop_toTopOf="@+id/tvStatSpDefence" />
+
+            <ProgressBar
+                android:id="@+id/pbStatSpeed"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatSpeed"
+                app:layout_constraintEnd_toEndOf="@+id/pbStatSpDefence"
+                app:layout_constraintStart_toStartOf="@+id/pbStatSpDefence"
+                app:layout_constraintTop_toTopOf="@+id/tvStatSpeed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

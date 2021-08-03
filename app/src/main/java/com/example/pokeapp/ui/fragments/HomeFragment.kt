@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.adapters.PokemonListAdapter
 import com.example.pokeapp.databinding.FragmentHomeBinding
 import com.example.pokeapp.ui.viewModel.ApiStates
 import com.example.pokeapp.ui.viewModel.HomeViewModel
+import com.example.pokeapp.util.Constant.PAGE_SIZE
 
 class HomeFragment : Fragment() {
 
@@ -34,16 +34,13 @@ class HomeFragment : Fragment() {
 
         val pokemonListAdapter = PokemonListAdapter()
 
-        binding.rvHome.apply {
-            adapter = pokemonListAdapter
-            layoutManager = GridLayoutManager(activity,2)
-        }
+        setupHomeRecyclerAdapter(pokemonListAdapter)
 
-        viewModel.pokemonList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.pokemonList.observe(viewLifecycleOwner, { result ->
             pokemonListAdapter.differ.submitList(result)
         })
 
-        viewModel.apiStatus.observe(viewLifecycleOwner, Observer { states ->
+        viewModel.apiStatus.observe(viewLifecycleOwner, { states ->
             when (states!!) {
                 ApiStates.LOADING -> showProgressbar()
                 ApiStates.SUCCESS -> hideProgressbar()
@@ -59,9 +56,55 @@ class HomeFragment : Fragment() {
 
     private fun hideProgressbar() {
         binding.pbHome.visibility = View.GONE
+        isLoading = false
     }
 
     private fun showProgressbar() {
         binding.pbHome.visibility = View.VISIBLE
+        isLoading = true
+    }
+
+    private fun setupHomeRecyclerAdapter(pokemonListAdapter: PokemonListAdapter) {
+        binding.rvHome.apply {
+            adapter = pokemonListAdapter
+            layoutManager = GridLayoutManager(activity, 2)
+            addOnScrollListener(this@HomeFragment.scrollListener)
+        }
+    }
+
+    private var isLoading = false
+    private var isLastPage = false
+    private var isScrolling = false
+
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            isScrolling = true
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            val shouldPaginate = shouldPaginate(recyclerView)
+            if(shouldPaginate) {
+                viewModel.getPokemon()
+                isScrolling = false
+            }
+        }
+    }
+
+    private fun shouldPaginate(recyclerView: RecyclerView): Boolean {
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+        val visibleLastItem = layoutManager.childCount
+        val totalItemCount = layoutManager.itemCount
+
+        val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+        val isAtLastItem = firstVisibleItemPosition + visibleLastItem >= totalItemCount
+        val isNotAtBeginning = firstVisibleItemPosition >= 0
+        val isTotalMoreThanVisible = totalItemCount >= PAGE_SIZE
+
+        return isNotLoadingAndNotLastPage
+                && isAtLastItem
+                && isNotAtBeginning
+                && isTotalMoreThanVisible
+                && isScrolling
     }
 }

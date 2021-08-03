@@ -50,19 +50,4 @@ class MainActivity : AppCompatActivity() {
     private fun lightMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
-
-    /*fun toggleDarkLightMode(view: View) {
-        val session = Session(this)
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                session.setDarkLightMode(false)
-            }
-            else -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                session.setDarkLightMode(true)
-            }
-        }
-        overridePendingTransition(0, 0)
-    }*/
 }

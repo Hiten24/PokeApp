@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">PokeApp</string>
+
+    <!--Moves-->
+    <string name="hp">hp</string>
+    <string name="attack">atk</string>
+    <string name="defence">def</string>
+    <string name="spacialAttack">sAtk</string>
+    <string name="specialDefence">sDef</string>
+    <string name="speed">spd</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pokedex_data_title">Pokedex Data</string>
+    <string name="training_title">Training</string>
+    <string name="species">Species</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="abilities">Abilities</string>
+    <string name="ev_yield">EV Yield</string>
+    <string name="catch_rate">Catch Rate</string>
+    <string name="base_friendship">Base Friendship</string>
+    <string name="base_exp">Base Exp</string>
+    <string name="growth_rate">Growth Rate</string>
+    <string name="not_applicable">-</string>
+    <string name="base_stats_title">Base Stats</string>
 </resources>
